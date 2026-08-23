@@ -2,6 +2,17 @@ import os
 import argparse
 from dotenv import load_dotenv
 from openai import OpenAI
+from call_function import available_functions
+
+system_prompt = """
+You are a helpful AI coding agent.
+
+When a user asks a question or makes a request, make a function call plan. You can perform the following operations:
+
+- List files and directories
+
+All paths you provide should be relative to the working directory. You do not need to specify the working directory in your function calls as it is automatically injected for security reasons.
+"""
 
 def main():
     load_dotenv()
@@ -22,7 +33,8 @@ def main():
             "content": args.user_prompt
         }
     ]
-    response = client.chat.completions.create(model="openrouter/free", messages=messages)
+    response = client.chat.completions.create(model="openrouter/free",
+                                               messages=messages, tools=available_functions,)
     if args.verbose:
         print(f"User prompt: {messages[0]["content"]}")
         if response.usage is not None:
