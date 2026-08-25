@@ -1,7 +1,7 @@
 [project]
 name = "aiagent"
 version = "0.1.0"
-description = "Add your description here"
+description = "throttled and limited tool use with openai and openrouter"
 readme = "README.md"
 requires-python = ">=3.13.2"
 dependencies = [
