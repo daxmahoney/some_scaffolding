@@ -1,7 +1,23 @@
 import os
-# from config import MAX_CHARS
+#from config import MAX_CHARS
 
 MAX_CHARS = 10000
+schema_get_file_content = {
+    "type": "function",
+    "function": {
+        "name": "get_file_content",
+        "description": "get contents of the file from the file name",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "file_path": {
+                    "type": "string",
+                    "description": "file path to the file",
+                },
+            },
+        },
+    },
+}
 
 def get_file_content(working_directory: str, file_path: str) -> str:
     # is file path in working directory
